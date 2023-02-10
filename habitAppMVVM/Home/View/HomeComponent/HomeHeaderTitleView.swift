@@ -23,8 +23,7 @@ class HomeHeaderTitleView: UIView {
        let stackView = UIStackView()
         stackView.axis = .vertical
         stackView.alignment = .leading
-        stackView.spacing = 5
-        stackView.backgroundColor = .green
+        stackView.spacing = 4
         stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
     }()
@@ -33,7 +32,7 @@ class HomeHeaderTitleView: UIView {
         let label = UILabel()
         label.text = "My Challenges"
         label.textColor = .black
-        label.font = UIFont.boldSystemFont(ofSize: 20.0)
+        label.font = UIFont.boldSystemFont(ofSize: 25)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -42,14 +41,15 @@ class HomeHeaderTitleView: UIView {
         let label = UILabel()
         label.text = "Wed, 18"
         label.textColor = .lightGray
-        label.font = UIFont.systemFont(ofSize: 15)
+        label.font = UIFont.systemFont(ofSize: 20)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
     private let plusButton: UIButton = {
         let button = UIButton()
-        button.backgroundColor = .purple
+        button.backgroundColor = .black
+        button.layer.cornerRadius = 10
         button.tintColor = .black
         button.setTitle("+", for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 30)

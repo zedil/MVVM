@@ -19,7 +19,7 @@ class HomeViewController: UIViewController {
     
     private let collectionView: UICollectionView = {
         let viewLayout = UICollectionViewFlowLayout()
-        viewLayout.scrollDirection = .horizontal
+        viewLayout.scrollDirection = .vertical
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: viewLayout)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.backgroundColor = .clear
@@ -27,18 +27,23 @@ class HomeViewController: UIViewController {
     }()
     
     private enum LayoutConstant {
-        static let spacing: CGFloat = 10
-        static let itemHeight: CGFloat = 80
+        static let spacing: CGFloat = 30
+        static let itemHeight: CGFloat = 100
     }
     
     var items: [Item] = []
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
+        navigationController?.setNavigationBarHidden(true, animated: animated)
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        view.backgroundColor = .blue
-        view.addSubview(headerView)
-        headerView.backgroundColor = .systemPink
+        view.backgroundColor = .white
+        //view.addSubview(headerView)
+        //headerView.backgroundColor = .systemPink
         view.addSubview(headerTitleView)
         view.addSubview(circularProgressBarView)
         view.addSubview(collectionView)
@@ -54,7 +59,7 @@ class HomeViewController: UIViewController {
             Item(title: "TEAM BONUS", desc: "deneme"),
             Item(title: "CIVILIZATION BONUS", desc: "deneme")
         ]
-        
+        /*
         let headerViewConst = [
             headerView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
             headerView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
@@ -63,12 +68,13 @@ class HomeViewController: UIViewController {
         ]
         
         NSLayoutConstraint.activate(headerViewConst)
+        */
         
         let headerTitleViewConst = [
-            headerTitleView.topAnchor.constraint(equalTo: headerView.bottomAnchor, constant: 10),
+            headerTitleView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
             headerTitleView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             headerTitleView.heightAnchor.constraint(equalToConstant: 40),
-            headerTitleView.widthAnchor.constraint(equalToConstant: (view.bounds.width) - 20)
+            headerTitleView.widthAnchor.constraint(equalToConstant: (view.bounds.width) - 40)
         ]
         
         NSLayoutConstraint.activate(headerTitleViewConst)
@@ -77,7 +83,7 @@ class HomeViewController: UIViewController {
             circularProgressBarView.topAnchor.constraint(equalTo: headerTitleView.bottomAnchor, constant: 30),
             circularProgressBarView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             circularProgressBarView.heightAnchor.constraint(equalToConstant: 100),
-            circularProgressBarView.widthAnchor.constraint(equalToConstant: (view.bounds.width) - 30)
+            circularProgressBarView.widthAnchor.constraint(equalToConstant: (view.bounds.width) - 40)
         ]
         
         NSLayoutConstraint.activate(circleViewConst)
@@ -85,10 +91,10 @@ class HomeViewController: UIViewController {
         
         
         let collectionViewConst = [
-            collectionView.topAnchor.constraint(equalTo: circularProgressBarView.bottomAnchor, constant: 50),
-            collectionView.heightAnchor.constraint(equalToConstant: 100),
-            collectionView.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor),
-            collectionView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor)
+            collectionView.topAnchor.constraint(equalTo: circularProgressBarView.bottomAnchor, constant: 30),
+            collectionView.leadingAnchor.constraint(equalTo: circularProgressBarView.leadingAnchor),
+            collectionView.heightAnchor.constraint(equalToConstant: 400),
+            collectionView.trailingAnchor.constraint(equalTo: circularProgressBarView.trailingAnchor)
         ]
         
         NSLayoutConstraint.activate(collectionViewConst)

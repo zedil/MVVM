@@ -14,9 +14,6 @@ class HomeProgressHeaderView: UIView {
     private let verticalStackView: UIStackView = {
        let stackView = UIStackView()
         stackView.axis = .vertical
-        stackView.alignment = .leading
-        stackView.spacing = 5
-        stackView.backgroundColor = .black
         stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
     }()
@@ -50,7 +47,8 @@ class HomeProgressHeaderView: UIView {
     
     
     private func addSubViews() {
-        self.backgroundColor = .darkGray
+        self.backgroundColor = .black
+        self.layer.cornerRadius = 20
         addSubview(verticalStackView)
         verticalStackView.addArrangedSubview(titleLabel)
         verticalStackView.addArrangedSubview(subtitleLabel)
@@ -66,8 +64,9 @@ class HomeProgressHeaderView: UIView {
         circle.translatesAutoresizingMaskIntoConstraints = false
         
         let verticalStackViewConst = [
-            verticalStackView.topAnchor.constraint(equalTo: self.topAnchor),
-            verticalStackView.heightAnchor.constraint(equalToConstant: 100),
+            verticalStackView.topAnchor.constraint(equalTo: self.topAnchor, constant: 10),
+            verticalStackView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20),
+            verticalStackView.heightAnchor.constraint(equalToConstant: 70),
             verticalStackView.widthAnchor.constraint(equalToConstant: 250)
         ]
         
