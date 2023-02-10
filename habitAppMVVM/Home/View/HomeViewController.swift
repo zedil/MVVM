@@ -12,6 +12,11 @@ class HomeViewController: UIViewController {
 
     private let headerView = HomeHeaderCustomView()
     
+    private let headerTitleView = HomeHeaderTitleView()
+    
+    var circularProgressBarView = HomeProgressHeaderView()
+    var circularViewDuration: TimeInterval = 2
+    
     private let collectionView: UICollectionView = {
         let viewLayout = UICollectionViewFlowLayout()
         viewLayout.scrollDirection = .horizontal
@@ -33,9 +38,15 @@ class HomeViewController: UIViewController {
         // Do any additional setup after loading the view.
         view.backgroundColor = .blue
         view.addSubview(headerView)
+        headerView.backgroundColor = .systemPink
+        view.addSubview(headerTitleView)
+        view.addSubview(circularProgressBarView)
         view.addSubview(collectionView)
         headerView.backgroundColor = .white
         headerView.translatesAutoresizingMaskIntoConstraints = false
+        headerTitleView.translatesAutoresizingMaskIntoConstraints = false
+        circularProgressBarView.translatesAutoresizingMaskIntoConstraints = false
+        
 
         
         items = [
@@ -53,11 +64,31 @@ class HomeViewController: UIViewController {
         
         NSLayoutConstraint.activate(headerViewConst)
         
+        let headerTitleViewConst = [
+            headerTitleView.topAnchor.constraint(equalTo: headerView.bottomAnchor, constant: 10),
+            headerTitleView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            headerTitleView.heightAnchor.constraint(equalToConstant: 40),
+            headerTitleView.widthAnchor.constraint(equalToConstant: (view.bounds.width) - 20)
+        ]
+        
+        NSLayoutConstraint.activate(headerTitleViewConst)
+        
+        let circleViewConst = [
+            circularProgressBarView.topAnchor.constraint(equalTo: headerTitleView.bottomAnchor, constant: 30),
+            circularProgressBarView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            circularProgressBarView.heightAnchor.constraint(equalToConstant: 100),
+            circularProgressBarView.widthAnchor.constraint(equalToConstant: (view.bounds.width) - 30)
+        ]
+        
+        NSLayoutConstraint.activate(circleViewConst)
+        
+        
+        
         let collectionViewConst = [
-            collectionView.topAnchor.constraint(equalTo: headerView.bottomAnchor, constant: 10),
-            collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -100),
-            collectionView.leftAnchor.constraint(equalTo: headerView.leftAnchor),
-            collectionView.rightAnchor.constraint(equalTo: headerView.rightAnchor)
+            collectionView.topAnchor.constraint(equalTo: circularProgressBarView.bottomAnchor, constant: 50),
+            collectionView.heightAnchor.constraint(equalToConstant: 100),
+            collectionView.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor),
+            collectionView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor)
         ]
         
         NSLayoutConstraint.activate(collectionViewConst)
@@ -70,9 +101,8 @@ class HomeViewController: UIViewController {
         collectionView.register(ItemCellCVC.self, forCellWithReuseIdentifier: ItemCellCVC.identifier)
         
         collectionView.reloadData()
+        
     }
-
-
 }
 
 extension HomeViewController: UICollectionViewDataSource {
