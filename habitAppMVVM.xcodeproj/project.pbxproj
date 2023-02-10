@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A0441F4A2978552F00C02F15 /* HomeCircleProgressBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0441F492978552F00C02F15 /* HomeCircleProgressBarView.swift */; };
+		A0441F4D2978574F00C02F15 /* ItemCellCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0441F4C2978574F00C02F15 /* ItemCellCVC.swift */; };
 		A058AD2729604AA200D188CE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A058AD2629604AA200D188CE /* AppDelegate.swift */; };
 		A058AD2929604AA200D188CE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A058AD2829604AA200D188CE /* SceneDelegate.swift */; };
 		A058AD2B29604AA200D188CE /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A058AD2A29604AA200D188CE /* HomeViewController.swift */; };
@@ -20,6 +22,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A0441F492978552F00C02F15 /* HomeCircleProgressBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCircleProgressBarView.swift; sourceTree = "<group>"; };
+		A0441F4C2978574F00C02F15 /* ItemCellCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCellCVC.swift; sourceTree = "<group>"; };
 		A058AD2329604AA200D188CE /* habitAppMVVM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = habitAppMVVM.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A058AD2629604AA200D188CE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A058AD2829604AA200D188CE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -45,6 +49,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A0441F4B2978573100C02F15 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				A0441F4C2978574F00C02F15 /* ItemCellCVC.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
 		A058AD1A29604AA200D188CE = {
 			isa = PBXGroup;
 			children = (
@@ -137,6 +149,7 @@
 		A058AD492960564C00D188CE /* View */ = {
 			isa = PBXGroup;
 			children = (
+				A0441F4B2978573100C02F15 /* Cell */,
 				A058AD3F296052E900D188CE /* HomeTabBar.swift */,
 				A058AD2A29604AA200D188CE /* HomeViewController.swift */,
 				A058AD4B2960568100D188CE /* HomeComponent */,
@@ -155,6 +168,7 @@
 			isa = PBXGroup;
 			children = (
 				A058AD4E2960601300D188CE /* HomeHeaderCustomView.swift */,
+				A0441F492978552F00C02F15 /* HomeCircleProgressBarView.swift */,
 			);
 			path = HomeComponent;
 			sourceTree = "<group>";
@@ -232,9 +246,11 @@
 				A058AD40296052E900D188CE /* HomeTabBar.swift in Sources */,
 				A058AD2B29604AA200D188CE /* HomeViewController.swift in Sources */,
 				A058AD4F2960601300D188CE /* HomeHeaderCustomView.swift in Sources */,
+				A0441F4A2978552F00C02F15 /* HomeCircleProgressBarView.swift in Sources */,
 				A058AD2729604AA200D188CE /* AppDelegate.swift in Sources */,
 				A058AD2929604AA200D188CE /* SceneDelegate.swift in Sources */,
 				A058AD422960550100D188CE /* SummaryViewController.swift in Sources */,
+				A0441F4D2978574F00C02F15 /* ItemCellCVC.swift in Sources */,
 				A058AD442960555000D188CE /* SettingsViewController.swift in Sources */,
 				A058AD462960557100D188CE /* AddHabitViewController.swift in Sources */,
 			);
