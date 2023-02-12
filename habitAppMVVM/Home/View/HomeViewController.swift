@@ -5,7 +5,14 @@
 //  Created by Dilara Şimşek on 31.12.2022.
 //
 
+//https://dribbble.com/shots/18341366-Habit-tracking-app/attachments/13552060?mode=media
+
 import UIKit
+
+public struct Item {
+    let title: String
+    let desc: String
+}
 
 class HomeViewController: UIViewController {
     
@@ -33,6 +40,17 @@ class HomeViewController: UIViewController {
     
     var items: [Item] = []
     
+    var habit: [Habit] = [Habit]()
+    let cellID = "cellId"
+    
+    private let habits = HabitsAPI.getHabits()
+    
+    private let habitTableView: UITableView = {
+        let tableView = UITableView()
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        return tableView
+    }()
+    
     override func viewWillAppear(_ animated: Bool) {
         
         navigationController?.setNavigationBarHidden(true, animated: animated)
@@ -47,10 +65,12 @@ class HomeViewController: UIViewController {
         view.addSubview(headerTitleView)
         view.addSubview(circularProgressBarView)
         view.addSubview(collectionView)
+        view.addSubview(habitTableView)
         headerView.backgroundColor = .white
         headerView.translatesAutoresizingMaskIntoConstraints = false
         headerTitleView.translatesAutoresizingMaskIntoConstraints = false
         circularProgressBarView.translatesAutoresizingMaskIntoConstraints = false
+        habitTableView.translatesAutoresizingMaskIntoConstraints = false
         
 
         
@@ -93,20 +113,35 @@ class HomeViewController: UIViewController {
         let collectionViewConst = [
             collectionView.topAnchor.constraint(equalTo: circularProgressBarView.bottomAnchor, constant: 30),
             collectionView.leadingAnchor.constraint(equalTo: circularProgressBarView.leadingAnchor),
-            collectionView.heightAnchor.constraint(equalToConstant: 400),
+            collectionView.heightAnchor.constraint(equalToConstant: 200),
             collectionView.trailingAnchor.constraint(equalTo: circularProgressBarView.trailingAnchor)
         ]
         
         NSLayoutConstraint.activate(collectionViewConst)
         
-        collectionView.backgroundColor = .green
+        let tableViewConst = [
+            habitTableView.topAnchor.constraint(equalTo: collectionView.bottomAnchor, constant: 30),
+            habitTableView.leadingAnchor.constraint(equalTo: collectionView.leadingAnchor),
+            habitTableView.heightAnchor.constraint(equalToConstant: 300),
+            habitTableView.trailingAnchor.constraint(equalTo: collectionView.trailingAnchor)
+        ]
         
+        NSLayoutConstraint.activate(tableViewConst)
+        
+        collectionView.backgroundColor = .green
+        habitTableView.backgroundColor = .systemPink
         
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.register(ItemCellCVC.self, forCellWithReuseIdentifier: ItemCellCVC.identifier)
         
         collectionView.reloadData()
+        
+        habitTableView.dataSource = self
+        habitTableView.delegate = self
+        
+        habitTableView.register(HabitsTBC.self, forCellReuseIdentifier: "habitCell")
+        habitTableView.reloadData()
         
     }
 }
@@ -157,8 +192,28 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout {
     }
 }
 
-public struct Item {
-    let title: String
-    let desc: String
+extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
+    
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return habits.count
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "habitCell", for: indexPath) as! HabitsTBC
+        
+        cell.habit = habits[indexPath.row]
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+       return 80
+    }
+    
+    
+    
 }
+
+
+
 
